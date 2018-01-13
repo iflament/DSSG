@@ -46,6 +46,7 @@ bundle.js
 .Trashes
 ehthumbs.db
 Thumbs.db
+.idea/
 
 # Data #
 ########
