@@ -1,6 +1,7 @@
 # Database credentials #
 ########################
 dbcreds.py
+credentials.py
 
 # Images #
 ##########
@@ -52,7 +53,7 @@ Thumbs.db
 *.tsv
 
 
-# Recommendations from Rayid via CharBucks #
+# 
 ############################################
 
 *.pyc
