@@ -20,10 +20,10 @@ class MuseumAnalysis:
 
     logging.config.dictConfig(logger_config)
 
-    def __init__(self, params, museum_data):
+    def __init__(self, params, data_feature_extracted):
 
         self.params = params
-        self.data = museum_data
+        self.data = data_feature_extracted
 
         self._plot_day_of_activation('day_of_activation-test')
         self._plot_museums_visited_per_card('number-museums-per-card-test')
@@ -62,7 +62,6 @@ class MuseumAnalysis:
 
         timedelta_range, timeunit = self._get_timedelta_range(tdr_timedelta)
         museum_dfs = {}
-        constants.museum_list.append('All Museums')
 
         for museum_name in constants.museum_list[:]:
 
