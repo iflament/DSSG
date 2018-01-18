@@ -11,22 +11,17 @@ logger = logging.getLogger(__name__)
 
 
 class CDRAnalysis:
-
     """CDR Analysis"""
 
     logging.config.dictConfig(logger_config)
 
-    def __init__(self, params, cdr_data):
+    def __init__(self, params, data_feature_extracted):
         self.params = params
-        self.cdr_foreigners_data = cdr_data.cdr_foreigners_data
-        self.cdr_italians_data = cdr_data.cdr_italians_data
-        self.cdr_main(self.cdr_foreigners_data)
-        self.cdr_main(self.cdr_italians_data)
+        self.data_feature_extracted = data_feature_extracted
+        self.cdr_main(self.data_feature_extracted)
 
-    # TODO finish EDA function
     @staticmethod
     def cdr_main(df):
-
         """ Exploratory analysis of CDR data """
 
         # Create a frequency count of how many average  daily calls each customer makes

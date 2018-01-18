@@ -13,19 +13,17 @@ class MuseumDataPreProcess:
 
     logging.config.dictConfig(logger_config)
 
-    def __init__(self, params):
+    def __init__(self, params, museum_raw_data, museum_locations_data):
 
         self.params = params
-        self.raw_data = pd.read_csv(constants.firenzedata_raw)
-        self.fc_data = pd.read_csv(constants.firenzedata_feature_extracted)
-        self.fc_locations_data = pd.read_csv(constants.firenzelocations_data)
-        self.statemuseum_data = pd.read_csv(constants.national_museums_data)
+        self.raw_data = museum_raw_data
+        self.locations_data = museum_locations_data
 
     def _extract_features(self):
         """ Feature extraction for FirenzeCard data """
 
         logger.info('Running feature extraction... ')
-        df = pd.merge(self.fc_locations_data, self.raw_data, on=['museum_id', 'museum_name'], how='inner')
+        df = pd.merge(self.locations_data, self.raw_data, on=['museum_id', 'museum_name'], how='inner')
 
         df['entry_time'] = pd.to_datetime(df['entry_time'])
         df['time'] = pd.to_datetime(df['entry_time']).dt.time
@@ -62,14 +60,11 @@ class MuseumDataPreProcess:
 class CDRPreProcess:
     """ Preprocess CDR data """
 
-    def __init__(self, params, museum_data):
+    def __init__(self, params, cdr_raw_data):
 
         self.params = params
-        self.museums = museum_data.drop_duplicates()
-        self.raw_data_foreigners = pd.read_csv(constants.cdr_foreigners_raw)
-        self.raw_data_italians = pd.read_csv(constants.cdr_italians_raw)
-        self.cdr_foreigners_data = self._extract_features(self.raw_data_foreigners)
-        self.cdr_italians_data = self._extract_features(self.raw_data_italians)
+        self.raw_data = cdr_raw_data
+        self.data_feature_extracted = self._extract_features(self.raw_data)
 
     @timeit(logger)
     def _extract_features(self, data):
