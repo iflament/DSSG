@@ -32,10 +32,10 @@ fc_date_to_plot: "2016-06-01"
 fc_min_timedelta: 7
 fc_max_timedelta: 23
 
-net_count: "total_people" # count (string): name of the column for the number of people moving along that edge at the instance
-net_target: "to" # target (string): name of column for the destination of an edge
-net_source: "from" #  source (string): name of column for the origin of an edge
-net_join_column: "short_name" # join_column (string): the name of the column on which tos link the two data frames.
+net_count: "total_people" # name of the column for the number of people moving along that edge at the instance
+net_target: "to" # name of column for the destination of an edge
+net_source: "from" # name of column for the origin of an edge
+net_join_column: "short_name" # the name of the column on which tos link the two data frames.
 net_only_start: False
 net_gap_length: 3
 net_use_log_scale: False
@@ -46,10 +46,15 @@ net_edge_width: 0.5
 net_site_source: 'Torre di Palazzo Vecchio'
 net_site_target: 'M. Palazzo Vecchio'
 
-fd_to_col_name: "to" # to_col_name (string): Name of the edges DataFrame column for the weight
-fd_from_col_name: "from" # from_col_name (string): Name of the edges DataFrame column for from node
-fd_weight_col_name: "weight" # weight_col_name (string): Name of the edges DataFrame column for to node. Only used for creating geojson from CDR data, not museums
-fd_id_colname_fc: "museum_id" # id_col_name (string): Name of the museums DataFrame column for node id
-fd_visitors_colname_fc: "visitors" # visitors_col_name (string): Name of the museums DataFrame column for number of visitors.
-fd_id_colname_cdr: "tower_id" # id_col_name (string): Name of the densities DataFrame column for node id
-fd_density_colname_cdr: "density" # density_col_name (string): Name of the densities DataFrame column for density.
+fd_to_col_name: "to" # Name of the edges DataFrame column for the weight
+fd_from_col_name: "from" # Name of the edges DataFrame column for from node
+fd_weight_col_name: "weight" # Name of the edges DataFrame column for to node. Only used for creating geojson from CDR data, not museums
+fd_id_colname_fc: "museum_id" # Name of the museums DataFrame column for node id
+fd_visitors_colname_fc: "visitors" # Name of the museums DataFrame column for number of visitors.
+fd_id_colname_cdr: "tower_id" # Name of the densities DataFrame column for node id
+fd_density_colname_cdr: "density" # Name of the densities DataFrame column for density.
+
+fountain_square_radius: 0.0001 # the radius of the square polygon
+fountain_circle_radius: 18 # the radius of the circle polygon
+fountain_circle_points: 20 # number of discrete sample points to be generated along the circle
+fountain_museum_maxid: 43
