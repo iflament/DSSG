@@ -4,6 +4,8 @@ import logging
 import logging.config
 import numpy as np
 from utils import timeit
+from pandas_schema import Column, Schema
+from pandas_schema.validation import IsDtypeValidation, DateFormatValidation
 
 logger = logging.getLogger(__name__)
 
@@ -13,17 +15,38 @@ class MuseumDataPreProcess:
 
     logging.config.dictConfig(logger_config)
 
-    def __init__(self, params, museum_raw_data, museum_locations_data):
+    def __init__(self, params, museum_raw_data):
 
         self.params = params
         self.raw_data = museum_raw_data
-        self.locations_data = museum_locations_data
+        self.validate()
+
+    def validate(self):
+
+        museum_schema = Schema([
+            Column('user_id', [IsDtypeValidation(int)]),
+            Column('latitude', [IsDtypeValidation(float)]),
+            Column('longitude', [IsDtypeValidation(float)]),
+            Column('museum_name', [IsDtypeValidation(str)]),
+            Column('museum_id', [IsDtypeValidation(int)]),
+            Column('short_name', [IsDtypeValidation(str)]),
+            Column('total_adults', [IsDtypeValidation(int)]),
+            Column('minors', [IsDtypeValidation(int)])
+        ])
+
+        errors = museum_schema.validate(self.raw_data)
+        logger.info(errors)
+
+        for error in errors:
+            logger.info(error)
+
+        return None
 
     def _extract_features(self):
         """ Feature extraction for FirenzeCard data """
 
         logger.info('Running feature extraction... ')
-        df = pd.merge(self.locations_data, self.raw_data, on=['museum_id', 'museum_name'], how='inner')
+        df = self.raw_data
 
         df['entry_time'] = pd.to_datetime(df['entry_time'])
         df['time'] = pd.to_datetime(df['entry_time']).dt.time
@@ -52,7 +75,7 @@ class MuseumDataPreProcess:
             df['is_in_museum_' + str(n)] = np.where(df['museum_id'] == n, 1, 0)
 
         if constants.export_to_csv:
-            df.to_csv(f'{_export_dir}_firenzedata_feature_extracted.csv', index=False)
+            df.to_csv(f'{_export_dir}_museumdata_feature_extracted.csv', index=False)
 
         return df
 
@@ -64,7 +87,25 @@ class CDRPreProcess:
 
         self.params = params
         self.raw_data = cdr_raw_data
+        self.validate()
         self.data_feature_extracted = self._extract_features(self.raw_data)
+
+    def validate(self):
+
+        cdr_schema = Schema([
+            Column('user_id', [IsDtypeValidation(int)]),
+            Column('latitude', [IsDtypeValidation(float)]),
+            Column('longitude', [IsDtypeValidation(float)]),
+            Column('user_origin', [IsDtypeValidation(str)]),
+            Column('in_city_boundaries', [IsDtypeValidation(str)]),
+            Column('date_time', [DateFormatValidation(str)]),
+            Column('tower_id', [IsDtypeValidation(int)])
+        ])
+
+        errors = cdr_schema.validate(self.raw_data)
+        logger.info(errors)
+
+        return None
 
     @timeit(logger)
     def _extract_features(self, data):
