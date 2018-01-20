@@ -126,12 +126,12 @@ class GeoProcess:
         return geo_dict
 
     def create_geometry(self, lat, lon):
-        """ Create a geojson Polygon geometry object with a circular Polygon that has
-        a centroid at the specified latitude and longitude.
-        :param: lat (float): the latitude for the center of the circle
-        :param: lon (float: the longitude for the center of the circle
-        :return: dict: the newly created Polygon geojson object
-        """
+        """ Create a geojson Polygon geometry object with a circular Polygon that has a centroid at the specified
+        latitude and longitude.
+
+        :param lat (float) the latitude for the center of the circle
+        :param lon (float) the longitude for the center of the circle
+        :return (dict) the newly created Polygon geojson object """
 
         geometry = {
             'type': 'Polygon',
@@ -165,20 +165,38 @@ class GeoProcess:
 
         return points
 
-    @staticmethod
-    def create_square(lat, lon, radius=0.0001):
+    def create_circle(self, lat, lon):
+        """ Create the approximation or a geojson circle polygon
+
+        :param lat (float) the center latitude for the polygon
+        :param lon (float) the center longitude for the polygon
+        :return  a list of lat/lon points defining a somewhat circular polygon """
+
+        points = []
+        for k in range(self.params.fountain_circle_points):
+            angle = math.pi * 2 * k / self.params.fountain_circle_points
+            dx = self.params.fountain_circle_radius * math.cos(angle)
+            dy = self.params.fountain_circle_radius * math.sin(angle)
+
+            new_lat = lat + (180 / math.pi) * (dy / 6378137)
+            new_lon = lon + (180 / math.pi) * (dx / 6378137) / math.cos(
+                lat * math.pi / 180)
+
+            points.append([round(new_lon, 7), round(new_lat, 7)])
+
+        return points
+
+    def create_square(self, lat, lon):
         """ Create the a geojson square polygon
-        :param: lat: the center latitude for the polygon
-        :param: lon: the center longitude for the polygon
-        :param: radius (int): half of the length of the edge of the square
-        :return: list of lat/lon points defining a square polygon
-        """
+
+        :param lat (float) the center latitude for the polygon
+        :param lon (float) the center longitude for the polygon
+        :return a list of lat/lon points defining a square polygon """
 
         return [
-            [round(lon + radius, 7), round(lat + radius, 7)],
-            [round(lon + radius, 7), round(lat - radius, 7)],
-            [round(lon - radius, 7), round(lat - radius, 7)],
-            [round(lon - radius, 7), round(lat + radius, 7)]
+            [round(lon + self.params.square.fountain_radius, 7), round(lat + self.params.square.fountain_radius, 7)],
+            [round(lon + self.params.square.fountain_radius, 7), round(lat - self.params.square.fountain_radius, 7)],
+            [round(lon - self.params.square.fountain_radius, 7), round(lat - self.params.square.fountain_radius, 7)],
+            [round(lon - self.params.square.fountain_radius, 7), round(lat + self.params.square.fountain_radius, 7)]
         ]
-
 
