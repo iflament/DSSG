@@ -2,6 +2,7 @@
 ########################
 dbcreds.py
 credentials.py
+credentials.yaml
 
 # Images #
 ##########

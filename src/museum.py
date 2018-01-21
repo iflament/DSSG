@@ -5,7 +5,7 @@ from plotly.graph_objs import *
 import plotly
 import plotly.plotly as py
 import plotly.graph_objs as go
-from config import constants, logger_config, _export_dir
+from config import constants, logger_config, _data_dir
 import logging.config
 import logging
 import credentials
@@ -24,8 +24,6 @@ class MuseumAnalysis:
 
         self.params = params
         self.data = data_feature_extracted
-
-        self._plot_day_of_activation('day_of_activation-test')
         self._plot_museums_visited_per_card('number-museums-per-card-test')
         self._plot_museum_aggregate_entries('museum-aggregate-entries-test')
         self._get_museum_entries_per_timedelta(tdr_timedelta='date')
@@ -328,39 +326,3 @@ class MuseumAnalysis:
 
         return df, plot_url
 
-    def _plot_day_of_activation(self, plotname):
-        """Plots Aggregate of Day of Activation."""
-
-        # todo sort order in logical day order
-        dotw = {0: 'Monday',
-                1: 'Tuesday',
-                2: 'Wednesday',
-                3: 'Thursday',
-                4: 'Friday',
-                5: 'Saturday',
-                6: 'Sunday'}
-        df = self.data[self.data['adults_first_use'] == 1][['user_id', 'day_of_week']]
-        df = df.groupby('user_id', as_index=False).mean()['day_of_week'].map(dotw).to_frame()
-        df = df['day_of_week'].value_counts().to_frame()
-
-        # todo fix the X axis labeling so it's not hardcoded!
-        trace = go.Bar(x=['Tuesday', 'Wednesday', 'Friday', 'Thursday', 'Saturday', 'Sunday', 'Monday'],
-                       y=df.day_of_week,
-                       marker=dict(color='#CC171D'))
-
-        layout = go.Layout(
-            title="Day of Firenze Card Activation",
-            xaxis=dict(
-                title='Day of the Week',
-                nticks=7,
-                ticks='outside',
-            ),
-            yaxis=dict(
-                title='Number of Cards Activated',
-                ticks='outside',
-            )
-        )
-        fig = go.Figure(data=go.Data([trace]), layout=layout)
-        plot_url = py.iplot(fig, filename=plotname, sharing='private', auto_open=False)
-
-        return plot_url

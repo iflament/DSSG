@@ -1,3 +1,4 @@
+# analysis params
 
 bot_threshold: 150
 lat_min: 43.83
@@ -7,8 +8,7 @@ lon_max: 11.225
 
 fountain_type_museum: 1
 fountain_type_cdr: 2
-minimum_calls_in_fc: 1
-minimum_daily_calls: 5
+minimum_total_calls: 2
 
 fc_start_date: "2016-06-01"
 fc_end_date: "2016-09-30"
@@ -32,19 +32,13 @@ fc_date_to_plot: "2016-06-01"
 fc_min_timedelta: 7
 fc_max_timedelta: 23
 
-net_count: "total_people" # name of the column for the number of people moving along that edge at the instance
 net_target: "to" # name of column for the destination of an edge
 net_source: "from" # name of column for the origin of an edge
 net_join_column: "short_name" # the name of the column on which tos link the two data frames.
 net_only_start: False
 net_gap_length: 3
 net_use_log_scale: False
-net_lon: longitude
-net_lat: latitude
-net_vertex_label_color: "black"
 net_edge_width: 0.5
-net_site_source: 'Torre di Palazzo Vecchio'
-net_site_target: 'M. Palazzo Vecchio'
 
 fd_to_col_name: "to" # Name of the edges DataFrame column for the weight
 fd_from_col_name: "from" # Name of the edges DataFrame column for from node

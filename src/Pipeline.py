@@ -5,9 +5,8 @@ from preprocess import MuseumDataPreProcess, CDRPreProcess
 from museum import MuseumAnalysis
 from telecom import CDRAnalysis
 from network_analysis import NetworkAnalysis
-import pandas as pd
-from pandas_schema import Column, Schema
-from pandas_schema.validation import IsDtypeValidation, DateFormatValidation
+from fountain_deck_gl import FountainViz
+from slack_bot import SlackBot
 
 logger = logging.getLogger(__name__)
 
@@ -17,77 +16,71 @@ def pipeline():
     logging.config.dictConfig(logger_config)
 
     # ---------------------------------------
-    # Get Params and Constants
+    # Get Params and Constants, Load data
     # ---------------------------------------
     nest = DataHandler()
-    params_file = constants.PARAMS_FILE
-    params = nest._load_params()
 
-    # ---------------------------------------
-    # Load data #todo load directly from S3 bucket or DB
-    # ---------------------------------------
-    museum_raw_data = pd.read_csv(constants.museum_raw)
-    museum_locations_data = pd.read_csv(constants.museum_locations)
-    cdr_raw_data = pd.read_csv(constants.cdr_raw)
+    bot = SlackBot()
+    pipeline_run_info = bot.generate_message(nest.input_params)
+    bot.send_msg(pipeline_run_info)
 
-    # ---------------------------------------
-    # Data validation #todo: dump this into data module in a validation class
-    # ---------------------------------------
-    cdr_schema = Schema([
-        Column('user_id', [IsDtypeValidation(int)]),
-        Column('latitude', [IsDtypeValidation(float)]),
-        Column('longitude', [IsDtypeValidation(float)]),
-        Column('user_origin', [IsDtypeValidation(str)]),
-        Column('in_city_boundaries', [IsDtypeValidation(str)]),
-        Column('date_time', [IsDtypeValidation(str), DateFormatValidation(str)]),
-        Column('tower_id', [IsDtypeValidation(int)])
-    ])
+    if nest.input_params.museum_data:
+        # -----------------------
+        # Preprocess Museum data
+        # -----------------------
+        bot.send_msg('preprocessing museum data...')
+        museum_data = MuseumDataPreProcess(
+            input_params=nest.input_params,
+            analysis_params=nest.analysis_params,
+            museum_raw_data=nest.museum_raw_data
+        )
 
-    errors = cdr_schema.validate(cdr_raw_data)
-    logger.info(errors)
+        # ---------------------------------------
+        # Museum Data Analysis
+        # ---------------------------------------
+        bot.send_msg('running museum data analysis...')
+        MuseumAnalysis(
+            params=nest.analysis_params,
+            data_feature_extracted=museum_data.data_feature_extracted
+        )
 
-    for error in errors:
-        print(error)
+        # ---------------------------------------
+        # Network Analysis
+        # ---------------------------------------
+        bot.send_msg('running network analysis...')
+        network_analysis = NetworkAnalysis(
+            params=nest.analysis_params,
+            data=museum_data.data_feature_extracted
+        )
 
-    # ---------------------------------------
-    # Preprocessing & Feature Extraction
-    # ---------------------------------------
-    museum_data = MuseumDataPreProcess(
-        params=params,
-        museum_raw_data=museum_raw_data,
-        museum_locations_data=museum_locations_data
-    )
+        # --------------------------------------------
+        # Create Fountain Visualization of museum data
+        # --------------------------------------------
+        bot.send_msg('building fountain visualization')
+        FountainViz(
+            network_analysis=network_analysis,
+            museum_data=museum_data
+        )
 
-    cdr_data = CDRPreProcess(
-        params=params,
-        cdr_raw_data=cdr_raw_data
-    )
+    if nest.input_params.cdr_data:
+        # --------------------
+        # Preprocess Cdr data
+        # --------------------
+        bot.send_msg('preprocessing cdr data...')
+        cdr_data = CDRPreProcess(
+            input_params=nest.input_params,
+            analysis_params=nest.analysis_params,
+            cdr_raw_data=nest.cdr_raw_data
+        )
 
-    # Run Situation Analyses on Museum and CDR data...
-    # ---------------------------------------
-    # Museum Data Analysis
-    # ---------------------------------------
-    MuseumAnalysis(
-        params=params,
-        data_feature_extracted=museum_data.data_feature_extracted
-    )
-
-    # ---------------------------------------
-    # CDR Data Analysis
-    # ---------------------------------------
-    CDRAnalysis(
-        params=params,
-        cdr_raw_data=cdr_data.data_feature_extracted
-    )
-
-    # ---------------------------------------
-    # Museum Network Analysis
-    # ---------------------------------------
-    NetworkAnalysis(
-        params=params,
-        data=museum_data.data_feature_extracted
-    )
-
+        # ---------------------------------------
+        # CDR Data Analysis
+        # ---------------------------------------
+        bot.send_msg('running cdr analysis...')
+        CDRAnalysis(
+            params=nest.analysis_params,
+            data_feature_extracted=cdr_data.data_feature_extracted
+        )
 
 if __name__ == "__main__":
     pipeline()

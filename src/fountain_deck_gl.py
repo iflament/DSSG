@@ -19,7 +19,7 @@ class FountainViz:
         records = records[records.museum_id < self.params.fountain_museum_maxid]
 
         network_df = self.museum_data.data_featured_extracted[['museum_id', 'date', 'user_id']]
-        network_df['total_people'] = 1 #todo: fix
+        network_df['total_people'] = 1
 
         dynamic_edges = self.network_analysis._get_dynamic_edgelist(network_df, location='museum_id')
 

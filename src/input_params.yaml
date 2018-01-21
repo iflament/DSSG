@@ -1,0 +1,7 @@
+export_to_csv: True
+museum_data: False
+cdr_data: True
+museum_data_input: 'local_file'  # or 'database'
+cdr_data_input: 'local_file'  # or 'database'
+net_site_source:
+net_site_target:
