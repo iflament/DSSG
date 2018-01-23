@@ -57,7 +57,7 @@ $ pip3 install -r requirements.txt
 
 <br>
 
-### Input Data File Structure
+### Input Data
 
 Data can be input either as files (currently supporting only csv files) or directly connecting to a database containing tables with the raw data. 
 
@@ -65,26 +65,74 @@ Types of data supported in this version:
 - Call detail records
 - Tourist attraction visit data (user entries in time). Can be applicable to museums or other types of attractions that have user entry information.
 
-### Museum data Format
+#### Site Data Format
 
-Example:
-WIP
+<table>
+  <tr>
+    <th>user_id</th>
+    <th>site_name</th>
+    <th>latitude</th>
+    <th>longitude</th>
+    <th>entry_time</th>
+    <th>total_adults</th>
+    <th>minors</th>
+  </tr>
+  <tr>
+    <td>88f7743844</td>
+    <td>Battistero di San Giovanni</td>
+    <td>43.773131</td>
+    <td>11.254966</td>
+    <td>'2002-03-11 00:00:32'</td>
+    <td>0</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>88f7743788</td>
+    <td>Santa Croce</td>
+    <td>43.768754</td>
+    <td>11.262597999999999</td>
+    <td>'2002-03-11 00:01:36'</td>
+    <td>1</td>
+    <td>0</td>
+  </tr>
+</table>
 
 ```
-museum_name: (str) name of the tourist attraction being visited
+user_id: (int) user identification number or hash id (anonymized) 
+site_name: (str) name of the tourist attraction being visited
 longitude: (float) longitude of tourist attraction being visited
 latitude: (float) latitude of tourist attraction being visited
-user_id: (int) user identification number or hash id (anonymized) 
 entry_time: (str) time of entry at the tourist attraction
 total_adults: (int) number of adults in the given entry (optional field)
 minors: (int) number of minors in the given entry (optional field)
 
 ```
 
-### Call detail Records Format
+#### Call Detail Records Data Format
 
-Example:
-WIP
+<table>
+  <tr>
+    <th>user_id</th>
+    <th>date_time</th>
+    <th>user_origin</th>
+    <th>latitude</th>
+    <th>longitude</th>
+  </tr>
+  <tr>
+    <td>88f3b844-419e-44f2-a20</td>
+    <td>'2002-03-11 00:00:00'</td>
+    <td>Germany</td>
+    <td>43.32</td>
+    <td>11.332</td>
+  </tr>
+  <tr>
+    <td>647fec0e-d6f1-414d-94d</td>
+    <td>'2002-03-11 00:00:00'</td>
+    <td>Mexico</td>
+    <td>41.877</td>
+    <td>12.395</td>
+  </tr>
+</table>
 
 ```
 user_id:  (int) user identification number or hash id (anonymized) 
@@ -97,7 +145,17 @@ longitude: (float) longitude of cell tower handling the call (call, sms, or othe
 
 #### Visualizations
 
-WIP
+Additionally to informative data summaries and timeseries plots, the software also generates interactive visualizations using  Uber's DECK-GL library. These visualizations aggregate the movements of users from the different data sources, in time and space, and create 3 dimensional representations of crowding in the city.
+
+Fountain paths: 
+http://dssg-eu.org/florence/fountain.html
+
+INSERT DEMO of fountain paths
+
+3D heatmap: 
+The heatmap visualization is currently a work in progress and has not yet been added to the Pipeline. Here is a screenshot:
+
+INSERT DEMO of heatmap
 
 The cloned/downloaded repository doesn't contain prebuilt version of the project and you need to build it. You need to have [NodeJs](https://nodejs.org/en/) with npm. 
 
@@ -113,6 +171,8 @@ npm start
 ```
 
 Open the project [http://localhost:4000](http://localhost:4000).
+
+
 
 
 
