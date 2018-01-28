@@ -9,21 +9,20 @@ _constants = {
     'SQL_DIR': os.path.join(_curr_dir, 'sql_templates'),
     'LOG_DIR': os.path.join(_curr_dir, 'logs'),
     'ANALYSIS_PARAMS_FILE': os.path.join(_curr_dir, 'params.yaml'),
-    'INPUT_PARAMS_FILE': os.path.join(_curr_dir, 'input_params.yaml'),
 
     # museum data paths
-    'museum_input_data': os.path.join(_data_dir, 'museumdata_CF.csv'),  # the path to raw data
-    'museum_output_data': os.path.join(_data_dir, '_museumdata_feature_extracted.csv'),  # output path of feature extracted data
+    'site_input_data': os.path.join(_data_dir, 'museumdata_CF.csv'),  # the path to raw data
+    'site_output_data': os.path.join(_data_dir, '_museumdata_feature_extracted.csv'),  # output path of feature extracted data
 
     # list of museum names
-    'museum_list': ['Santa Croce', 'Opera del Duomo', 'Uffizi', 'Accademia', 'M. Casa Dante', 'M. Palazzo Vecchio',
+    'site_list': ['Santa Croce', 'Opera del Duomo', 'Uffizi', 'Accademia', 'M. Casa Dante', 'M. Palazzo Vecchio',
                     'M. Galileo', 'M. Bargello', 'San Lorenzo', 'M. Archeologico', 'Pitti', 'Cappelle Medicee',
                     'M. Santa Maria Novella', 'M. San Marco', 'Laurenziana', 'M. Innocenti', 'Palazzo Strozzi',
                     'Palazzo Medici', 'Torre di Palazzo Vecchio', 'Brancacci', 'M. Opificio', 'La Specola',
                     'Orto Botanico', 'V. Bardini', 'M. Stefano Bardini', 'M. Antropologia', 'M. Ebraico',
                     'M. Marini', 'Casa Buonarroti', 'M. Horne', 'M. Ferragamo', 'M. Novecento',
                     'M. Palazzo Davanzati', 'M. Geologia', 'M. Civici Fiesole', 'M. Stibbert', 'M. Mineralogia',
-                    'M. Preistoria', 'M. Calcio', 'Primo Conti', 'All Museums'],
+                    'M. Preistoria', 'M. Calcio', 'Primo Conti'],
 
     # cdr data paths
     'cdr_input_data': os.path.join(_data_dir, 'cdrdata_CF.csv'),  # the path to raw data

@@ -4,7 +4,7 @@ from pylab import *
 import igraph as ig
 import pandas as pd
 import numpy as np
-from config import constants, logger_config, _export_dir
+from config import constants, logger_config, _data_dir
 import logging.config
 import logging
 import credentials

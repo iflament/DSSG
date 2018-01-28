@@ -13,9 +13,11 @@ class DataHandler:
 
     logging.config.dictConfig(logger_config)
 
-    def __init__(self, export, sitedata, sitedata_format, cdrdata, cdrdata_format, net_analysis, vis,
+    def __init__(self, city, slackbot, export, sitedata, sitedata_format, cdrdata, cdrdata_format, net_analysis, vis,
                        sampling, sample_size):
 
+        self.city = city
+        self.slackbot = city
         self.export = export
         self.sitedata = sitedata
         self.sitedata_format = sitedata_format
@@ -29,9 +31,9 @@ class DataHandler:
 
         if self.sitedata:
             if self.sitedata_format == 'local_file':
-                self.museum_raw_data = self._get_data_from_file(constants.museum_input_data)
+                self.site_raw_data = self._get_data_from_file(constants.site_input_data)
             elif self.sitedata_format == 'database':
-                self.museum_raw_data = self._get_data_from_db(constants.museum_input_query)
+                self.site_raw_data = self._get_data_from_db(constants.site_input_query)
 
         if self.cdrdata:
             if self.cdrdata_format == 'local_file':
@@ -52,6 +54,8 @@ class DataHandler:
         p = dict(params)
 
         click_p = dict()
+        click_p['city'] = self.city
+        click_p['slackbot'] = self.slackbot
         click_p['export'] = self.export
         click_p['sitedata'] = self.sitedata
         click_p['sitedata_format'] = self.sitedata_format

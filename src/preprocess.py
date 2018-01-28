@@ -13,11 +13,11 @@ class MuseumDataPreProcess:
 
     logging.config.dictConfig(logger_config)
 
-    def __init__(self, input_params, analysis_params, museum_raw_data):
+    def __init__(self, click_params, params, site_raw_data):
 
-        self.input_params = input_params
-        self.params = analysis_params
-        self.raw_data = museum_raw_data
+        self.click_params = click_params
+        self.params = params
+        self.raw_data = site_raw_data
         self.data_feature_extracted = self._extract_features()
 
     def _extract_features(self):
@@ -32,6 +32,9 @@ class MuseumDataPreProcess:
         df['hour'] = pd.to_datetime(df['entry_time']).dt.hour
         df['day_of_week'] = df['entry_time'].dt.dayofweek
 
+        # create site_id from site_name
+        df['site_id'] = df.site_name.apply(lambda x: hash(x))
+
         df = df.sort_values('entry_time', ascending=True)
         df['total_people'] = df['total_adults'] + df['minors']
 
@@ -44,16 +47,16 @@ class MuseumDataPreProcess:
         df['entry_is_adult'] = np.where(df['total_adults'] == 1, 1, 0)
         df['is_card_with_minors'] = np.where(df['minors'] == 1, 1, 0)
 
-        entrances_per_card_per_museum = pd.DataFrame(df.groupby('user_id', as_index=True)['museum_id'].
-                                                     value_counts().rename('entrances_per_card_per_museum'))
+        entrances_per_card_per_museum = pd.DataFrame(df.groupby('user_id', as_index=True)['site_id'].
+                                                     value_counts().rename('entrances_per_card_per_site'))
 
-        df = pd.merge(entrances_per_card_per_museum.reset_index(), df, on=['user_id', 'museum_id'], how='inner')
+        df = pd.merge(entrances_per_card_per_museum.reset_index(), df, on=['user_id', 'site_id'], how='inner')
 
-        for n in range(1, df['museum_id'].nunique()):
-            df['is_in_museum_' + str(n)] = np.where(df['museum_id'] == n, 1, 0)
+        for n in range(1, df['site_id'].nunique()):
+            df['is_in_site_' + str(n)] = np.where(df['site_id'] == n, 1, 0)
 
-        if self.input_params.export_to_csv:
-            df.to_csv(f'{constants.museum_output_data}', index=False)
+        if self.click_params.export:
+            df.to_csv(f'{constants.site_output_data}', index=False)
 
         return df
 
@@ -61,10 +64,10 @@ class MuseumDataPreProcess:
 class CDRPreProcess:
     """ Preprocess CDR data """
 
-    def __init__(self, input_params, analysis_params, cdr_raw_data):
+    def __init__(self, click_params, params, cdr_raw_data):
 
-        self.input_params = input_params
-        self.params = analysis_params
+        self.click_params = click_params
+        self.params = params
         self.raw_data = cdr_raw_data
         self.data_feature_extracted = self._extract_features()
 
@@ -75,12 +78,12 @@ class CDRPreProcess:
         logger.info('Running cdr data feature extraction... ')
 
         # filter out customers that were not in the city
-        # df = self.raw_data
-        # mask = ((self.params.lat_min >= df.lat) & (df.lat >= self.params.lat_max) &
-        #         (self.params.lon_min >= df.lon) & (df.lon >= self.params.lon_max))
-        # df = df.loc[mask]
         df = self.raw_data
-        df = df[df['in_city'] == True]
+        mask = ((self.params.lat_min >= df.latitude) & (df.latitude >= self.params.lat_max) &
+                (self.params.lon_min >= df.longitude) & (df.longitude >= self.params.lon_max))
+        df = df.loc[mask]
+        # df = self.raw_data
+        # df = df[df['in_city'] == True]
 
         calls = pd.DataFrame(df.groupby('user_id', as_index=False).size().reset_index())
         calls.columns = ['user_id', 'total_calls']
@@ -103,7 +106,7 @@ class CDRPreProcess:
         users_to_keep = list(calls_in_florence[calls_in_florence['total_calls'] >= self.params.minimum_total_calls]['user_id'])
         df = df[df['user_id'].isin(users_to_keep)]
 
-        if self.input_params.export_to_csv:
+        if self.click_params.export:
             df.to_csv(f'{constants.cdr_output_data}', index=False)
 
         return df
