@@ -11,10 +11,14 @@ logger = logging.getLogger(__name__)
 class SlackBot:
     """Send messages via Slack."""
 
-    def __init__(self, channel='city-flows-bot'):
+    def __init__(self, nest, network_analysis, channel):
         """Initialize SlackBot."""
         self._sc = SlackClient(_credentials['slack'])
         self._channel = channel
+        self.upload_file(filepath='./data/sankey.png',
+                         title='City Flows - Sankey Diagram',
+                         text=f'```{nest.click_params} ```\n '
+                              f'```{network_analysis.plot_url} ```\n ')
 
     def send_msg(self, txt):
         """Send Slack message."""

@@ -23,7 +23,8 @@ logger = logging.getLogger(__name__)
 @click.option('--vis', is_flag=True, default=False)
 @click.option('--sampling', is_flag=True, default=False)
 @click.option('--sample_size', type=int, default=1000)
-def pipeline(city, slackbot, export, sitedata, sitedata_format, cdrdata, cdrdata_format, net_analysis, vis,
+def pipeline(city, slackbot, export, sitedata, sitedata_format,
+             cdrdata, cdrdata_format, net_analysis, vis,
              sampling, sample_size):
 
     logging.config.dictConfig(logger_config)
@@ -31,8 +32,9 @@ def pipeline(city, slackbot, export, sitedata, sitedata_format, cdrdata, cdrdata
     # ---------------------------------------
     # Get Params and Constants, Load data
     # ---------------------------------------
-    nest = DataHandler(city, slackbot, export, sitedata, sitedata_format, cdrdata, cdrdata_format, net_analysis, vis,
-                       sampling, sample_size)
+    nest = DataHandler(city, slackbot, export, sitedata,
+                       sitedata_format, cdrdata, cdrdata_format,
+                       net_analysis, vis, sampling, sample_size)
 
     if nest.click_params.sitedata:
         # -----------------------
@@ -94,4 +96,3 @@ def pipeline(city, slackbot, export, sitedata, sitedata_format, cdrdata, cdrdata
 
 if __name__ == "__main__":
     pipeline()
-
