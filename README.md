@@ -28,6 +28,14 @@ Original project code and documentation: https://github.com/DSSG2017/florence
 
 The code in this repo is designed to run spatial and temporal analyses, and generate informative dynamic visualizations, on multiple civic data sources. 
 
+Examples of dynamic plots generated:
+
+<p align="center">
+  <img src="./museums.gif" width="50%" height="50%"><br>
+  <strong>
+  </strong>
+</p>
+
 #### Questions addressed:
 - What locations are the most crowded, at specific: hours of the day / days of the week / dates over the summer ?
 - Where do people transition to and from?
