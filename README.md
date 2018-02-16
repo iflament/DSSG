@@ -60,8 +60,6 @@ $ pip3 install -r requirements.txt
     └── data                # data files
 ```
 
-<br>
-
 ### Input Data
 
 Data can be input either as files (currently supporting only csv files) or directly connecting to a database containing tables with the raw data. 
@@ -155,7 +153,11 @@ Additionally to informative data summaries and timeseries plots, the software al
 Fountain paths: 
 http://dssg-eu.org/florence/fountain.html
 
-INSERT DEMO of fountain paths
+<p align="center">
+  <img src="./transitions.gif"><br>
+  <strong>
+  </strong>
+</p>
 
 3D heatmap: 
 The heatmap visualization is currently a work in progress and has not yet been added to the Pipeline. Here is a screenshot:
