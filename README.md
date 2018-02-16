@@ -8,7 +8,8 @@
 
 ### News & Developments
 
-This fork is an initiative to build an application from the exploratory DSSG 2017 Florence project.  I'm currently working on an extension of the project (CityFlows: https://github.com/iflament/cityflows), which will further expand this to be city-agnostic, and support additional data sources (such as subway and bus data). 
+This fork is an initiative to build an application from the exploratory DSSG 2017 Florence project.
+I'm currently working on an extension of the project, which will further expand this to be city-agnostic, and support additional data sources (such as subway and bus data).
 For any questions please email me at iflament[dot]auc[at]gmail.com. 
 Happy coding! Io Flament
 
@@ -27,7 +28,11 @@ Original project code and documentation: https://github.com/DSSG2017/florence
 
 The code in this repo is designed to run spatial and temporal analyses, and generate informative dynamic visualizations, on multiple civic data sources. 
 
-Types of analyses supported in this version:
+#### Questions addressed:
+- What locations are the most crowded, at specific: hours of the day / days of the week / dates over the summer ?
+- Where do people transition to and from?
+
+Types of data supported in this version:
 - Call detail records
 - Site data (user entries at  specific locations). Can be applicable to museums or others attractions.
 
