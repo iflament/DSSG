@@ -28,6 +28,14 @@ Original project code and documentation: https://github.com/DSSG2017/florence
 
 The code in this repo is designed to run spatial and temporal analyses, and generate informative dynamic visualizations, on multiple civic data sources. 
 
+#### Questions addressed:
+- What locations are the most crowded, at specific: hours of the day / days of the week / dates over the summer ?
+- Where do people transition to and from?
+
+Types of data supported in this version:
+- Call detail records
+- Site data (user entries at  specific locations). Can be applicable to museums or others attractions.
+
 Examples of dynamic plots generated:
 
 <p align="left">
@@ -47,17 +55,6 @@ http://dssg-eu.org/florence/fountain.html
   </strong>
 </p>
 
-#### Questions addressed:
-- What locations are the most crowded, at specific: hours of the day / days of the week / dates over the summer ?
-- Where do people transition to and from?
-
-Types of data supported in this version:
-- Call detail records
-- Site data (user entries at  specific locations). Can be applicable to museums or others attractions.
-
-The all analyses modules are called from the main Pipeline.py module, which can be run as follows:
-``` $ python3 Pipeline.py ```
-
 ### Getting Started
 
 > **Note:** If you don't want to re-build the project, you may just clone this branch directly  ```https://github.com/iflament/florence```
@@ -69,6 +66,9 @@ $ git clone https://github.com/iflament/florence.git
 $ cd florence
 $ pip3 install -r requirements.txt
 ```
+
+The all analyses modules are called from the main Pipeline.py module, which can be run as follows:
+``` $ python3 Pipeline.py ```
 
 ### Folder Structure
 
