@@ -1,4 +1,4 @@
-## Data-Driven Planning for Sustainable Tourism in Tuscany <br> 
+## Data-Driven Planning for Sustainable Tourism<br> 
 
 <p align="center">
   <img src="./florence.png"><br>
@@ -8,8 +8,8 @@
 
 ### News & Developments
 
-This fork is an initiative to build an application from the exploratory DSSG 2017 Florence project.
-I'm currently working on an extension of the project, which will further expand this to be city-agnostic, and support additional data sources (such as subway and bus data).
+This fork is an extension of the exploratory DSSG 2017 Florence project: 
+I'm currently developing the project into city-agnostic software which will generate informative analyses and support additional data sources (such as subway and bus data).
 For any questions please email me at iflament[dot]auc[at]gmail.com. 
 Happy coding! Io Flament
 
@@ -30,8 +30,19 @@ The code in this repo is designed to run spatial and temporal analyses, and gene
 
 Examples of dynamic plots generated:
 
-<p align="center">
+<p align="left">
   <img src="./museums.gif" width="50%" height="50%"><br>
+  <strong>
+  </strong>
+</p>
+
+Additionally to informative data summaries and timeseries plots, the software also generates interactive visualizations using  Uber's DECK-GL library. These visualizations aggregate the movements of users from the different data sources, in time and space, and create 3 dimensional representations of crowding in the city.
+
+Fountain paths: 
+http://dssg-eu.org/florence/fountain.html
+
+<p align="center">
+  <img src="./transitions.gif"><br>
   <strong>
   </strong>
 </p>
@@ -154,23 +165,7 @@ longitude: (float) longitude of cell tower handling the call (call, sms, or othe
 
 ```
 
-#### Visualizations
-
-Additionally to informative data summaries and timeseries plots, the software also generates interactive visualizations using  Uber's DECK-GL library. These visualizations aggregate the movements of users from the different data sources, in time and space, and create 3 dimensional representations of crowding in the city.
-
-Fountain paths: 
-http://dssg-eu.org/florence/fountain.html
-
-<p align="center">
-  <img src="./transitions.gif"><br>
-  <strong>
-  </strong>
-</p>
-
-3D heatmap: 
-The heatmap visualization is currently a work in progress and has not yet been added to the Pipeline. Here is a screenshot:
-
-INSERT DEMO of heatmap
+### NodeJS
 
 The cloned/downloaded repository doesn't contain prebuilt version of the project and you need to build it. You need to have [NodeJs](https://nodejs.org/en/) with npm. 
 
