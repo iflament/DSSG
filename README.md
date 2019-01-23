@@ -9,9 +9,7 @@
 ### News & Developments
 
 This fork is an extension of the exploratory DSSG 2017 Florence project: 
-I'm currently developing the project into city-agnostic software which will generate informative analyses and support additional data sources (such as subway and bus data).
-For any questions please email me at iflament[dot]auc[at]gmail.com. 
-Happy coding! Io Flament
+For any questions please email me at iflament[dot]auc[at]gmail.com.  Io Flament
 
 ### Description
 
