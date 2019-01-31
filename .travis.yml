@@ -1,1 +1,9 @@
 language: python
+
+python:
+
+  - "3"
+
+script: 
+
+  - python src/pipeline.py
