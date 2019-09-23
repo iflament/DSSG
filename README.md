@@ -2,8 +2,6 @@
 
 <p align="center">
   <img src="./florence.png"><br>
-  Project Fellows: Io Flament - Momin Malik - Christina Lozano
-  Project Manager: 
   <strong>
   </strong>
 </p>
@@ -23,9 +21,9 @@ is on the rise. High-speed trains and low-cost airlines allow larger amounts of 
 
 Tourism is an economic asset to communities worldwide. However, many touristic destinations are insufficiently equipped to properly respond to the increasing flux of visitors. The unprecedented number of tourists is causing concern among local, regional and national goverment agencies. Cities working with analog management of their cultural resources are searching for sustainable solutions that will benefit both tourists and residents alike.
 
-During summer 2017, our team at Data Science for Social Good analysed the spatial and temporal patterns of tourist movements within the city of Florence (data from summer 2016), one of Europe's oldest and most beautiful historical landmarks. This attempt to quantify and describe the extent of the situation is only one of the several ongoing intiatives that local government and tourism agencies are taking to better manage the influx of thousands of visitors, improve decision-making and maintain public safety. Questions of interest included: What locations are the most crowded, at specific: hours of the day / days of the week / dates over the summer? Where do people transition to and from?
+During summer 2017, our team at Data Science for Social Good analysed the spatial and temporal patterns of tourist movements within the city of Florence (data from summer 2016), one of Europe's oldest and most beautiful historical landmarks. This attempt to quantify and describe the extent of the situation is only one of the several ongoing intiatives that local government and tourism agencies are taking to better manage the influx of thousands of visitors, improve decision-making and maintain public safety.  
 
-The code in this repo was developed to run the spatial and temporal analyses of the project, and generate informative dynamic visualizations, on multiple civic data sources. 
+The code in this repo was developed to run the spatial and temporal analyses of the project, and generate informative dynamic visualizations, on multiple civic data sources. Research questions included: What locations are the most crowded, at specific: hours of the day / days of the week / dates over the summer? Where do people transition to and from?
 
 #### Anonymized call detail records (Telecom) EDA analyses: http://dssg-eu.org/florence/cdr_index.html
 #### Museum card EDA analyses: http://dssg-eu.org/florence/firenze_index.html
