@@ -3,14 +3,14 @@
 </p>
 
 ## Data-Driven Planning for Sustainable Tourism
+<br>
 <p align="center">
-  <img src="./florence.png"><br>
-  <strong>
+<strong>
 DSSG Fellows: Io Flament, Momim Malik, Cristina Lozano<br>
 Technical Mentor: Qiwei Han<br>
 Project Manager: Laura Szczuczak<br>
 </strong>
-</p>
+  </p>
 
 This project was conducted as part of Data Science for Social Good (DSSG) Europe 2017 fellowship, further details of the twelve week summer fellowship can be found here: https://dssg.uchicago.edu/europe/
 
