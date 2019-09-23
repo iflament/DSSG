@@ -1,15 +1,20 @@
-## Data-Driven Planning for Sustainable Tourism<br> 
+## Data-Driven Planning for Sustainable Tourism - A Data Science for Social Good Project<br> 
 
 <p align="center">
   <img src="./florence.png"><br>
+  Project Fellows: Io Flament - Momin Malik - Christina Lozano
+  Project Manager: 
   <strong>
   </strong>
 </p>
 
-### News & Developments
+This project was conducted as part of Data Science for Social Good (DSSG) Europe 2017 fellowship, further details of the twelve week summer fellowship can be found here: https://dssg.uchicago.edu/europe/
 
-This fork is an extension of the exploratory DSSG 2017 Florence project: 
-For any questions please email me at iflament[dot]auc[at]gmail.com.  Io Flament
+DSSG Fellows: Io Flament, Momim Malik, Cristina Lozano
+Technical Mentor: Qiwei Han
+Project Manager: Laura Szczuczak
+
+Project website with interactive visualizations: http://dssg-eu.org/florence
 
 ### Description
 
@@ -18,19 +23,11 @@ is on the rise. High-speed trains and low-cost airlines allow larger amounts of 
 
 Tourism is an economic asset to communities worldwide. However, many touristic destinations are insufficiently equipped to properly respond to the increasing flux of visitors. The unprecedented number of tourists is causing concern among local, regional and national goverment agencies. Cities working with analog management of their cultural resources are searching for sustainable solutions that will benefit both tourists and residents alike.
 
-During summer 2017, our team at Data Science for Social Good analysed the spatial and temporal patterns of tourist movements within the city of Florence (data from summer 2016), one of Europe's oldest and most beautiful historical landmarks. This attempt to quantify and describe the extent of the situation is only one of the several ongoing intiatives that local government and tourism agencies are taking to better manage the influx of thousands of visitors, improve decision-making and maintain public safety. 
+During summer 2017, our team at Data Science for Social Good analysed the spatial and temporal patterns of tourist movements within the city of Florence (data from summer 2016), one of Europe's oldest and most beautiful historical landmarks. This attempt to quantify and describe the extent of the situation is only one of the several ongoing intiatives that local government and tourism agencies are taking to better manage the influx of thousands of visitors, improve decision-making and maintain public safety. Questions of interest included: What locations are the most crowded, at specific: hours of the day / days of the week / dates over the summer? Where do people transition to and from?
 
-The code in this repo was designed to run the spatial and temporal analyses for the project, and generate informative dynamic visualizations, on multiple civic data sources. Original project code and documentation: https://github.com/DSSG2017/florence
+The code in this repo was developed to run the spatial and temporal analyses of the project, and generate informative dynamic visualizations, on multiple civic data sources. 
 
-#### Questions addressed:
-- What locations are the most crowded, at specific: hours of the day / days of the week / dates over the summer ?
-- Where do people transition to and from?
-
-Types of data supported in this version:
-- Call detail records
-- Site data (user entries at  specific locations). Can be applicable to museums or others attractions.
-
-#### Telecom EDA analyses: http://dssg-eu.org/florence/cdr_index.html
+#### Anonymized call detail records (Telecom) EDA analyses: http://dssg-eu.org/florence/cdr_index.html
 #### Museum card EDA analyses: http://dssg-eu.org/florence/firenze_index.html
 
 <p align="left">
