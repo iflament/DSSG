@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./DSSG.png"><br>
+  <img src="./DSSG.png", width=80%, heigh=80%><br>
 </p>
 
 ## Data-Driven Planning for Sustainable Tourism
