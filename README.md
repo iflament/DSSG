@@ -1,7 +1,10 @@
-## Data-Driven Planning for Sustainable Tourism <br> 
-
 <p align="center">
   <img src="./DSSG.png"><br>
+</p>
+
+## Data-Driven Planning for Sustainable Tourism
+<p align="center">
+  <img src="./florence.png"><br>
   <strong>
 DSSG Fellows: Io Flament, Momim Malik, Cristina Lozano<br>
 Technical Mentor: Qiwei Han<br>
