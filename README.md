@@ -43,7 +43,7 @@ Full page here: http://dssg-eu.org/florence/fountain.html
 #### Anonymized call detail records (Telecom) EDA analyses: http://dssg-eu.org/florence/cdr_index.html
 
 <p align="left">
-  <img src="./cdr.gif" width="50%" height="50%"><br>
+  <img src="./cdr.gif" width="100%" height="100%"><br>
   <strong>
   </strong>
 </p>
@@ -57,7 +57,7 @@ Full page here: http://dssg-eu.org/florence/fountain.html
 </p>
 
 <p align="left">
-  <img src="./museums2.gif" width="50%" height="50%"><br>
+  <img src="./museums2.gif" width=100%" height="100%"><br>
   <strong>
   </strong>
 </p>
