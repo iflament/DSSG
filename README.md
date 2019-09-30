@@ -41,10 +41,23 @@ Full page here: http://dssg-eu.org/florence/fountain.html
 </p>
 
 #### Anonymized call detail records (Telecom) EDA analyses: http://dssg-eu.org/florence/cdr_index.html
+
+<p align="left">
+  <img src="./cdr.gif" width="50%" height="50%"><br>
+  <strong>
+  </strong>
+</p>
+
 #### Museum card EDA analyses: http://dssg-eu.org/florence/firenze_index.html
 
 <p align="left">
   <img src="./museums.gif" width="50%" height="50%"><br>
+  <strong>
+  </strong>
+</p>
+
+<p align="left">
+  <img src="./museums2.gif" width="50%" height="50%"><br>
   <strong>
   </strong>
 </p>
